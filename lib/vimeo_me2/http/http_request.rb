@@ -21,7 +21,7 @@ module VimeoMe2
         @end_point = end_point
         @allowed_status = allowed_status
         print_request_to_console
-        @last_request = HTTParty.public_send(@method, prefix_endpoint(@end_point), http_request, verify: false)
+        @last_request = HTTParty.public_send(@method, prefix_endpoint(@end_point), http_request)
         get_rate_limit_information
         validate_response!(@last_request, @allowed_status)
         return nil if @last_request.response.body.nil?
@@ -83,7 +83,7 @@ module VimeoMe2
         end
 
         def http_request
-          return {headers:request_headers, body:formatted_body, query:@query}
+          return {headers:request_headers, body:formatted_body, query:@query, verify: false}
         end
 
         def formatted_body
