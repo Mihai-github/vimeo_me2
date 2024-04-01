@@ -29,7 +29,7 @@ module VimeoMe2
     def initialize(token, user_id = nil, api_version = nil)
       @base_uri = user_id ? "/users/#{user_id}" : "/me"
       @api_version = api_version
-      @user = super(token, api_version)
+      @user = super(token)
     end
   end
 end
